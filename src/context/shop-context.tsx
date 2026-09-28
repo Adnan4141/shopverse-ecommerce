@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { Product, products } from "@/data/products";
+import { Product, products as initialProducts } from "@/data/products";
 import { toast } from "sonner";
 
 interface CartItems {
@@ -10,8 +10,15 @@ interface CartItems {
   };
 }
 
+export interface User {
+  name: string;
+  email: string;
+  role: "customer" | "admin";
+}
+
 interface ShopContextType {
   products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   currency: string;
   delivery_fee: number;
   search: string;
@@ -23,6 +30,10 @@ interface ShopContextType {
   getCartCount: () => number;
   updateQuantity: (itemId: string, size: string, quantity: number) => void;
   getCartAmount: () => number;
+  token: string | null;
+  user: User | null;
+  loginUser: (token: string, user: User) => void;
+  logoutUser: () => void;
 }
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
@@ -32,23 +43,32 @@ export const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const currency = "$";
   const delivery_fee = 10;
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState<CartItems>({});
+  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("shopverse_cart");
-      if (stored) {
-        setCartItems(JSON.parse(stored));
+      const storedCart = localStorage.getItem("shopverse_cart");
+      if (storedCart) {
+        setCartItems(JSON.parse(storedCart));
+      }
+      const storedToken = localStorage.getItem("shopverse_token");
+      const storedUser = localStorage.getItem("shopverse_user");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
       }
     } catch {
       // fallback
     }
   }, []);
 
-  // Save cart to localStorage
   useEffect(() => {
     try {
       localStorage.setItem("shopverse_cart", JSON.stringify(cartItems));
@@ -56,6 +76,21 @@ export const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
       // fallback
     }
   }, [cartItems]);
+
+  const loginUser = (userToken: string, userData: User) => {
+    setToken(userToken);
+    setUser(userData);
+    localStorage.setItem("shopverse_token", userToken);
+    localStorage.setItem("shopverse_user", JSON.stringify(userData));
+  };
+
+  const logoutUser = () => {
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("shopverse_token");
+    localStorage.removeItem("shopverse_user");
+    toast.info("Logged out successfully");
+  };
 
   const addToCart = (itemId: string, size: string) => {
     if (!size) {
@@ -132,6 +167,7 @@ export const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
     <ShopContext.Provider
       value={{
         products,
+        setProducts,
         currency,
         delivery_fee,
         search,
@@ -143,6 +179,10 @@ export const ShopContextProvider: React.FC<{ children: React.ReactNode }> = ({
         getCartCount,
         updateQuantity,
         getCartAmount,
+        token,
+        user,
+        loginUser,
+        logoutUser,
       }}
     >
       {children}
