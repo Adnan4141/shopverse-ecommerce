@@ -95,6 +95,7 @@ export default function CollectionPage() {
               <Image
                 src="/assets/dropdown_icon.png"
                 className={cn("h-3 w-auto sm:hidden transition-transform", showFilter ? "rotate-90" : "")}
+                style={{ width: "auto" }}
                 alt="Toggle Filters"
                 width={12}
                 height={12}
