@@ -17,8 +17,11 @@ const prata = Prata({
 });
 
 export const metadata: Metadata = {
-  title: "Forever - E-commerce Store",
-  description: "Forever Clothing & Fashion Storefront",
+  title: "Shopverse - Next-Gen E-commerce Store",
+  description: "Shopverse Fashion, Clothing & Lifestyle Storefront",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={}>
+    <html lang="en" className={outfit.variable + " " + prata.variable}>
       <body className="font-sans antialiased text-[#414141] bg-white min-h-screen flex flex-col">
         <ShopContextProvider>
           <Toaster position="top-right" richColors />
