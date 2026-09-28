@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PlusCircle, List, Package } from "lucide-react";
+import { PlusCircle, List, Package, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const AdminSidebar = () => {
@@ -25,6 +25,11 @@ export const AdminSidebar = () => {
       href: "/admin/orders",
       icon: Package,
     },
+    {
+      name: "Seed Data",
+      href: "/admin/seed",
+      icon: Database,
+    },
   ];
 
   return (
@@ -44,8 +49,8 @@ export const AdminSidebar = () => {
                   : "text-gray-700 hover:bg-gray-50"
               )}
             >
-              <Icon className="w-5 h-5" />
-              <p className="hidden md:block">{item.name}</p>
+              <Icon className="w-5 h-5 shrink-0" />
+              <p className="hidden md:block whitespace-nowrap">{item.name}</p>
             </Link>
           );
         })}
