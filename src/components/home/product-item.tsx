@@ -14,7 +14,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
 }) => {
   return (
     <Link
-      href={`/product/${product._id}`}
+      href={"/product/" + product._id}
       className="text-gray-700 cursor-pointer group block"
     >
       <div className="overflow-hidden bg-gray-50 aspect-square relative">

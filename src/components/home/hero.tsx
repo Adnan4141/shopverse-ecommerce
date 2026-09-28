@@ -32,7 +32,7 @@ export const Hero = () => {
         <Image
           src="/assets/hero_img.png"
           className="w-full h-auto object-cover"
-          alt="Forever Latest Arrivals"
+          alt="Shopverse Latest Arrivals"
           width={700}
           height={500}
           priority

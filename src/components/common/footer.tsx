@@ -10,7 +10,7 @@ export const Footer = () => {
           <Image
             src="/assets/logo.png"
             className="mb-5 w-32 h-auto"
-            alt="Forever Logo"
+            alt="Shopverse Logo"
             width={128}
             height={39}
           />
@@ -64,7 +64,7 @@ export const Footer = () => {
               <a href="tel:+12124567890">+1-212-456-7890</a>
             </li>
             <li className="hover:text-black transition-colors">
-              <a href="mailto:contact@foreveryou.com">contact@foreveryou.com</a>
+              <a href="mailto:contact@shopverse.com">contact@shopverse.com</a>
             </li>
           </ul>
         </div>
@@ -73,7 +73,7 @@ export const Footer = () => {
       <div>
         <hr className="border-gray-200" />
         <p className="py-5 text-xs sm:text-sm text-center text-gray-600">
-          Copyright 2024@ forever.com - All Right Reserved.
+          Copyright 2026@ shopverse.com - All Right Reserved.
         </p>
       </div>
     </footer>
