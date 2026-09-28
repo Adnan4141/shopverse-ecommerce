@@ -71,15 +71,13 @@ export const Navbar = () => {
               </Link>
             );
           })}
-          {token && user?.role === "admin" && (
-            <Link
-              href="/admin"
-              className="border border-gray-800 text-gray-800 px-4 py-1.5 text-xs rounded-full font-semibold hover:bg-black hover:text-white transition-all shadow-xs flex items-center gap-1.5"
-            >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Admin Panel</span>
-            </Link>
-          )}
+          <Link
+            href="/admin"
+            className="border border-gray-800 text-gray-800 px-4 py-1.5 text-xs rounded-full font-semibold hover:bg-black hover:text-white transition-all shadow-xs flex items-center gap-1.5"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Admin Panel</span>
+          </Link>
         </ul>
 
         {/* Action Icons */}
@@ -235,16 +233,13 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            {token && user?.role === "admin" && (
-              <Link
-                onClick={() => setVisible(false)}
-                className="py-3.5 pl-6 border-b text-sm font-semibold hover:bg-gray-50 transition-colors text-pink-700 flex items-center gap-2"
-                href="/admin"
-              >
-                <ShieldCheck className="w-4 h-4 text-pink-600" />
-                <span>Admin Panel</span>
-              </Link>
-            )}
+            <Link
+              onClick={() => setVisible(false)}
+              className="py-3.5 pl-6 border-b text-sm font-semibold hover:bg-gray-50 transition-colors"
+              href="/admin"
+            >
+              Admin Panel
+            </Link>
             {token ? (
               <>
                 <Link

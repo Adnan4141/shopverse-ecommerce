@@ -140,27 +140,10 @@ export default function LoginPage() {
           </button>
 
           {currentState === "Login" && (
-            <div
-              onClick={() => {
-                setEmail("admin@shopverse.com");
-                setPassword("admin123");
-                toast.success("Admin demo credentials filled!");
-              }}
-              className="mt-4 p-3 bg-gray-50 hover:bg-gray-100 border border-dashed border-gray-400 rounded-md text-xs text-gray-500 w-full text-center cursor-pointer transition-all hover:border-black group select-none"
-              title="Click to auto-fill admin credentials"
-            >
-              <div className="flex items-center justify-center gap-1.5 font-semibold text-gray-800 group-hover:text-black">
-                <span>⚡ Admin Demo Login</span>
-                <span className="text-[10px] text-white bg-black px-1.5 py-0.5 rounded-full font-normal group-hover:bg-pink-600 transition-colors">
-                  Click to Auto-fill
-                </span>
-              </div>
-              <p className="mt-1">
-                Email: <span className="text-black font-mono font-medium">admin@shopverse.com</span>
-              </p>
-              <p>
-                Password: <span className="text-black font-mono font-medium">admin123</span>
-              </p>
+            <div className="mt-4 p-3 bg-gray-50 border text-xs text-gray-500 w-full text-center">
+              <p className="font-semibold text-gray-700">Admin Demo Login:</p>
+              <p>Email: <span className="text-black font-mono">admin@shopverse.com</span></p>
+              <p>Password: <span className="text-black font-mono">admin123</span></p>
             </div>
           )}
         </form>
